@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Safety Check</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 320px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .popup-container {
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .header h1 {
+      font-size: 16px;
+      font-weight: bold;
+      color: #00e676;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header h1::before {
+      content: "";
+      font-size: 18px;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .toggle-container label {
+      font-size: 14px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #777;
+      transition: 0.3s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #00e676;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    .status {
+      background: #1e1e1e;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .status h2 {
+      font-size: 16px;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .status .checkmark {
+      font-size: 28px;
+      margin: 10px 0;
+      color: #00e676;
+    }
+
+    details {
+      margin-top: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    pre {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #ddd;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <h1>URL Safety Check</h1>
+    </div>
+
+    <div class="toggle-container">
+      <label for="notifyToggle">Enable Notifications</label>
+      <label class="switch">
+        <input type="checkbox" id="notifyToggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="status" id="statusCard">
+      <h2 id="result">Checking...</h2>
+      <div class="checkmark" id="checkmark">⏳</div>
+    </div>
+
+    <details>
+      <summary>Details</summary>
+      <pre id="details">Loading...</pre>
+    </details>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
